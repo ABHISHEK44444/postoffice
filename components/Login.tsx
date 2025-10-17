@@ -28,7 +28,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-[80vh]">
+        <div className="relative z-10 flex items-center justify-center min-h-[80vh]">
             <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-xl border border-gray-200">
                 <div className="text-center">
                     <img 
