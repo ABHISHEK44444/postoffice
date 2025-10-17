@@ -228,10 +228,10 @@ const BagReceipt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                             {/* Scanned Bags */}
                              <div className="space-y-2">
                                 <h3 className="font-bold text-gray-700 flex items-center"><QrCodeIcon className="w-5 h-5 mr-2" /> Scanned Bags</h3>
-                                <div className="border rounded-md overflow-x-auto">
-                                    <div style={{ minWidth: '700px' }}>
-                                        <table className="w-full text-xs">
-                                            <thead className="bg-gray-100 text-gray-600 uppercase">
+                                <div className="border rounded-md overflow-hidden flex flex-col h-64">
+                                    <div className="overflow-auto flex-grow">
+                                        <table className="w-full text-xs" style={{ minWidth: '700px' }}>
+                                            <thead className="bg-gray-100 text-gray-600 uppercase sticky top-0">
                                                 <tr>
                                                     <th className="p-2 text-left whitespace-nowrap">ScheduleName</th>
                                                     <th className="p-2 text-left whitespace-nowrap">Bag Number</th>
@@ -240,32 +240,28 @@ const BagReceipt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                                                     <th className="p-2 text-left whitespace-nowrap">Received From</th>
                                                 </tr>
                                             </thead>
+                                            <tbody className="bg-white divide-y">
+                                                {filteredScannedBags.length > 0 ? filteredScannedBags.map(bag => (
+                                                    <tr key={bag.id}>
+                                                        <td className="p-2 truncate">{bag.scheduleName}</td>
+                                                        <td className="p-2 truncate">{bag.bagNumber}</td>
+                                                        <td className="p-2">{bag.weight.toFixed(3)}</td>
+                                                        <td className="p-2">
+                                                            <select defaultValue={bag.receiveType} className="form-select text-xs p-1 border-gray-300 rounded-md w-full">
+                                                                <option>Receiver</option>
+                                                                <option>Received For Forward</option>
+                                                                <option>Received For Delivery</option>
+                                                            </select>
+                                                        </td>
+                                                        <td className="p-2 truncate">{bag.receivedFrom}</td>
+                                                    </tr>
+                                                )) : (
+                                                    <tr>
+                                                        <td colSpan={5} className="text-center p-4 text-gray-500">No scanned bags found.</td>
+                                                    </tr>
+                                                )}
+                                            </tbody>
                                         </table>
-                                        <div className="h-48 overflow-y-auto">
-                                            <table className="w-full text-xs">
-                                                <tbody className="bg-white divide-y">
-                                                    {filteredScannedBags.length > 0 ? filteredScannedBags.map(bag => (
-                                                        <tr key={bag.id}>
-                                                            <td className="p-2 truncate w-1/5">{bag.scheduleName}</td>
-                                                            <td className="p-2 truncate w-1/5">{bag.bagNumber}</td>
-                                                            <td className="p-2 w-[15%]">{bag.weight.toFixed(3)}</td>
-                                                            <td className="p-2 w-1/5">
-                                                                <select defaultValue={bag.receiveType} className="form-select text-xs p-1 border-gray-300 rounded-md w-full">
-                                                                    <option>Receiver</option>
-                                                                    <option>Received For Forward</option>
-                                                                    <option>Received For Delivery</option>
-                                                                </select>
-                                                            </td>
-                                                            <td className="p-2 truncate w-[15%]">{bag.receivedFrom}</td>
-                                                        </tr>
-                                                    )) : (
-                                                        <tr>
-                                                            <td colSpan={5} className="text-center p-4 text-gray-500">No scanned bags found.</td>
-                                                        </tr>
-                                                    )}
-                                                </tbody>
-                                            </table>
-                                        </div>
                                     </div>
                                 </div>
                              </div>
@@ -273,10 +269,10 @@ const BagReceipt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                              {/* Expected Bags */}
                              <div className="space-y-2">
                                 <h3 className="font-bold text-gray-700 flex items-center"><ClipboardDocumentListIcon className="w-5 h-5 mr-2" /> Expected Bags</h3>
-                                 <div className="border rounded-md overflow-x-auto">
-                                    <div style={{ minWidth: '700px' }}>
-                                        <table className="w-full text-xs">
-                                            <thead className="bg-gray-100 text-gray-600 uppercase">
+                                <div className="border rounded-md overflow-hidden flex flex-col h-64">
+                                    <div className="overflow-auto flex-grow">
+                                        <table className="w-full text-xs" style={{ minWidth: '700px' }}>
+                                            <thead className="bg-gray-100 text-gray-600 uppercase sticky top-0">
                                                 <tr>
                                                     <th className="p-2 text-left whitespace-nowrap">Bag Number</th>
                                                     <th className="p-2 text-left whitespace-nowrap">Despatched By</th>
@@ -285,26 +281,22 @@ const BagReceipt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                                                     <th className="p-2 text-left whitespace-nowrap">Date of Despatch</th>
                                                 </tr>
                                             </thead>
+                                            <tbody className="bg-white divide-y">
+                                                {filteredExpectedBags.length > 0 ? filteredExpectedBags.map(bag => (
+                                                    <tr key={bag.id}>
+                                                        <td className="p-2 truncate">{bag.bagNumber}</td>
+                                                        <td className="p-2 truncate">{bag.despatchedBy}</td>
+                                                        <td className="p-2 truncate">{bag.closedFromOffice}</td>
+                                                        <td className="p-2 truncate">{bag.closedToOffice}</td>
+                                                        <td className="p-2 truncate">{bag.dateOfDespatch}</td>
+                                                    </tr>
+                                                )) : (
+                                                    <tr>
+                                                        <td colSpan={5} className="text-center p-4 text-gray-500">No expected bags found.</td>
+                                                    </tr>
+                                                )}
+                                            </tbody>
                                         </table>
-                                         <div className="h-48 overflow-y-auto">
-                                            <table className="w-full text-xs">
-                                                <tbody className="bg-white divide-y">
-                                                    {filteredExpectedBags.length > 0 ? filteredExpectedBags.map(bag => (
-                                                        <tr key={bag.id}>
-                                                            <td className="p-2 truncate w-1/5">{bag.bagNumber}</td>
-                                                            <td className="p-2 truncate w-1/5">{bag.despatchedBy}</td>
-                                                            <td className="p-2 truncate w-1/5">{bag.closedFromOffice}</td>
-                                                            <td className="p-2 truncate w-1/5">{bag.closedToOffice}</td>
-                                                            <td className="p-2 truncate w-1/5">{bag.dateOfDespatch}</td>
-                                                        </tr>
-                                                    )) : (
-                                                        <tr>
-                                                            <td colSpan={5} className="text-center p-4 text-gray-500">No expected bags found.</td>
-                                                        </tr>
-                                                    )}
-                                                </tbody>
-                                            </table>
-                                        </div>
                                     </div>
                                 </div>
                              </div>
@@ -332,15 +324,15 @@ const BagReceipt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     return (
         <div className="relative z-10 animate-fade-in">
             <div className="mb-6">
-                <div className="flex justify-between items-center">
-                    <div className="flex-1">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div className="flex-1 w-full sm:w-auto self-start sm:self-center">
                         <button className="flex items-center text-sm text-gray-600 hover:text-blue-600">
                             <StarIcon className="w-4 h-4 mr-2" />
                             Favourites (Ctrl+A)
                         </button>
                     </div>
-                    <h2 className="flex-grow text-2xl font-bold text-gray-800 text-center">Bag Receipt</h2>
-                    <div className="flex-1 flex justify-end">
+                    <h2 className="flex-grow text-2xl font-bold text-gray-800 text-center order-first sm:order-none">Bag Receipt</h2>
+                    <div className="flex-1 w-full sm:w-auto flex justify-end">
                        <UserInfo />
                     </div>
                 </div>
