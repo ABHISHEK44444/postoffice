@@ -204,37 +204,31 @@ const BagCloseAtMO: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                  <div className="flex flex-col">
                     <h3 className="font-bold text-gray-700 mb-2">Expected Articles</h3>
                     <div className="border rounded-md overflow-hidden flex flex-col min-h-[250px]">
-                        <div className="overflow-x-auto">
-                           <div style={{ minWidth: '600px' }}>
-                                <table className="w-full text-xs text-left table-fixed">
-                                    <thead className="bg-gray-100 text-gray-600 uppercase">
-                                        <tr>
-                                            <th className="p-2 w-[30%]">Article Number</th>
-                                            <th className="p-2 w-[25%]">Booking Office</th>
-                                            <th className="p-2 w-[15%]">ToPin</th>
-                                            <th className="p-2 w-[15%]">Art Type</th>
-                                            <th className="p-2 w-[10%]">Art Weight</th>
-                                            <th className="p-2 w-[5%]">INS</th>
+                        <div className="overflow-auto flex-grow">
+                            <table className="w-full text-xs text-left table-fixed" style={{ minWidth: '600px' }}>
+                                <thead className="bg-gray-100 text-gray-600 uppercase sticky top-0">
+                                    <tr>
+                                        <th className="p-2 w-[30%]">Article Number</th>
+                                        <th className="p-2 w-[25%]">Booking Office</th>
+                                        <th className="p-2 w-[15%]">ToPin</th>
+                                        <th className="p-2 w-[15%]">Art Type</th>
+                                        <th className="p-2 w-[10%]">Art Weight</th>
+                                        <th className="p-2 w-[5%]">INS</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-white divide-y divide-gray-200">
+                                    {expectedArticlesData.map(article => (
+                                        <tr key={article.id}>
+                                            <td className="p-2 truncate w-[30%]">{article.articleNumber}</td>
+                                            <td className="p-2 truncate w-[25%]">{article.bookingOffice}</td>
+                                            <td className="p-2 w-[15%]">{article.toPin}</td>
+                                            <td className="p-2 w-[15%]">{article.artType}</td>
+                                            <td className="p-2 w-[10%]">{article.artWeight}</td>
+                                            <td className="p-2 w-[5%]"><input type="checkbox" checked={article.ins} readOnly className="form-checkbox" /></td>
                                         </tr>
-                                    </thead>
-                                </table>
-                                <div className="overflow-y-auto h-48">
-                                    <table className="w-full text-xs text-left table-fixed">
-                                        <tbody className="bg-white divide-y divide-gray-200">
-                                            {expectedArticlesData.map(article => (
-                                                <tr key={article.id}>
-                                                    <td className="p-2 truncate w-[30%]">{article.articleNumber}</td>
-                                                    <td className="p-2 truncate w-[25%]">{article.bookingOffice}</td>
-                                                    <td className="p-2 w-[15%]">{article.toPin}</td>
-                                                    <td className="p-2 w-[15%]">{article.artType}</td>
-                                                    <td className="p-2 w-[10%]">{article.artWeight}</td>
-                                                    <td className="p-2 w-[5%]"><input type="checkbox" checked={article.ins} readOnly className="form-checkbox" /></td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                         <div className="border-t p-2 mt-auto bg-gray-50 flex justify-between items-center text-xs">
                              <p>Rows per page: 8</p>
@@ -261,14 +255,14 @@ const BagCloseAtMO: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         <div className="relative z-10 animate-fade-in">
             <div className="mb-6">
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-                    <div className="flex-1 self-start">
+                    <div className="flex-1 self-start sm:self-center">
                         <button className="flex items-center text-sm text-gray-600 hover:text-blue-600">
                             <StarIcon className="w-4 h-4 mr-2" />
                             Favourites (Ctrl+A)
                         </button>
                     </div>
-                    <h2 className="flex-grow text-2xl font-bold text-gray-800 text-center">Bag Close At MO</h2>
-                    <div className="flex-1 flex justify-end self-start">
+                    <h2 className="flex-grow text-2xl font-bold text-gray-800 text-center order-first sm:order-none">Bag Close At MO</h2>
+                    <div className="flex-1 flex justify-end">
                        <UserInfo />
                     </div>
                 </div>
