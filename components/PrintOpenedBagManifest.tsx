@@ -8,15 +8,15 @@ const PrintOpenedBagManifest: React.FC<{ onBack: () => void }> = ({ onBack }) =>
     return (
         <div className="relative z-10 animate-fade-in">
             <div className="mb-6">
-                <div className="flex justify-between items-center">
-                    <div className="flex-1">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div className="flex-1 w-full sm:w-auto self-start sm:self-center">
                         <button className="flex items-center text-sm text-gray-600 hover:text-blue-600">
                             <StarIcon className="w-4 h-4 mr-2" />
                             Favourites (Ctrl+A)
                         </button>
                     </div>
-                    <h2 className="flex-grow text-2xl font-bold text-gray-800 text-center whitespace-nowrap">Print Opened Bag Manifest</h2>
-                    <div className="flex-1 flex justify-end">
+                    <h2 className="flex-grow text-2xl font-bold text-gray-800 text-center whitespace-nowrap order-first sm:order-none">Print Opened Bag Manifest</h2>
+                    <div className="flex-1 w-full sm:w-auto flex justify-end">
                        <UserInfo />
                     </div>
                 </div>
