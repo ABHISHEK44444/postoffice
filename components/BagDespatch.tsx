@@ -249,21 +249,21 @@ const BagDespatch: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                         Scanned Bags
                     </h3>
                     <div className="border rounded-md flex-grow flex flex-col overflow-hidden">
-                         <div className="overflow-x-auto">
+                         <div className="overflow-auto h-64">
                             <table className="w-full text-sm text-left" style={{ minWidth: '600px' }}>
-                                <thead className="bg-gray-100 text-gray-600 uppercase text-xs">
-                                    <tr className="table w-full table-fixed">
-                                        <th className="p-2 w-1/3 whitespace-nowrap">BagNumber</th>
-                                        <th className="p-2 w-1/3 whitespace-nowrap">Closed To</th>
-                                        <th className="p-2 w-1/3 whitespace-nowrap">BagType</th>
+                                <thead className="bg-gray-100 text-gray-600 uppercase text-xs sticky top-0">
+                                    <tr>
+                                        <th className="p-2 whitespace-nowrap">BagNumber</th>
+                                        <th className="p-2 whitespace-nowrap">Closed To</th>
+                                        <th className="p-2 whitespace-nowrap">BagType</th>
                                     </tr>
                                 </thead>
-                                <tbody className="bg-white divide-y divide-gray-200 h-48 block overflow-y-auto">
+                                <tbody className="bg-white divide-y divide-gray-200">
                                     {filteredScannedBags.map(bag => (
                                         <tr 
                                             key={bag.id}
                                             onClick={() => setSelectedScannedBagId(bag.id)}
-                                            className={`table w-full table-fixed cursor-pointer ${selectedScannedBagId === bag.id ? 'bg-blue-100' : 'hover:bg-gray-50'}`}
+                                            className={`cursor-pointer ${selectedScannedBagId === bag.id ? 'bg-blue-100' : 'hover:bg-gray-50'}`}
                                         >
                                             <td className="p-2 whitespace-nowrap">{bag.id}</td>
                                             <td className="p-2 whitespace-nowrap">{bag.closedTo}</td>
@@ -281,21 +281,21 @@ const BagDespatch: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                 <div className="flex flex-col">
                     <h3 className="text-lg font-bold text-gray-700 mb-2 flex items-center"><ClipboardDocumentListIcon className="w-5 h-5 mr-2 text-gray-500" /> Expected Bags</h3>
                     <div className="border rounded-md flex-grow flex flex-col overflow-hidden">
-                        <div className="overflow-x-auto">
+                        <div className="overflow-auto h-64">
                             <table className="w-full text-sm text-left" style={{ minWidth: '600px' }}>
-                                <thead className="bg-gray-100 text-gray-600 uppercase text-xs">
-                                    <tr className="table w-full table-fixed">
-                                        <th className="p-2 w-1/3 whitespace-nowrap">BagNumber</th>
-                                        <th className="p-2 w-1/3 whitespace-nowrap">Received at</th>
-                                        <th className="p-2 w-1/3 whitespace-nowrap">BagType</th>
+                                <thead className="bg-gray-100 text-gray-600 uppercase text-xs sticky top-0">
+                                    <tr>
+                                        <th className="p-2 whitespace-nowrap">BagNumber</th>
+                                        <th className="p-2 whitespace-nowrap">Received at</th>
+                                        <th className="p-2 whitespace-nowrap">BagType</th>
                                     </tr>
                                 </thead>
-                                <tbody className="bg-white divide-y divide-gray-200 h-48 block overflow-y-auto">
+                                <tbody className="bg-white divide-y divide-gray-200">
                                     {filteredExpectedBags.map(bag => (
                                         <tr 
                                             key={bag.id} 
                                             onClick={() => setSelectedExpectedBagId(bag.id)}
-                                            className={`table w-full table-fixed cursor-pointer ${selectedExpectedBagId === bag.id ? 'bg-blue-100' : 'hover:bg-gray-50'}`}
+                                            className={`cursor-pointer ${selectedExpectedBagId === bag.id ? 'bg-blue-100' : 'hover:bg-gray-50'}`}
                                         >
                                             <td className="p-2 truncate" title={bag.bagNumber}>{bag.bagNumber}</td>
                                             <td className="p-2 whitespace-nowrap">{bag.receivedAt}</td>
@@ -311,7 +311,7 @@ const BagDespatch: React.FC<{ onBack: () => void }> = ({ onBack }) => {
             </div>
             
             {/* Bottom Bar */}
-            <div className="flex justify-between items-center mt-6 pt-4 border-t">
+            <div className="flex flex-wrap justify-between items-center mt-6 pt-4 border-t gap-2">
                  <p className="text-xs text-gray-500">Please verify details before despatch.</p>
                  <div className="flex items-center space-x-2">
                      <button className="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-md hover:bg-red-700">Save Draft</button>
@@ -326,15 +326,15 @@ const BagDespatch: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   return (
     <div className="relative z-10 animate-fade-in">
       <div className="mb-6">
-        <div className="flex justify-between items-center">
-            <div className="flex-1">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="flex-1 w-full sm:w-auto self-start sm:self-center">
                 <button className="flex items-center text-sm text-gray-600 hover:text-blue-600">
                     <StarIcon className="w-4 h-4 mr-2" />
                     Favourites (Ctrl+A)
                 </button>
             </div>
-            <h2 className="flex-grow text-2xl font-bold text-gray-800 text-center">Bag Despatch</h2>
-            <div className="flex-1 flex justify-end">
+            <h2 className="flex-grow text-2xl font-bold text-gray-800 text-center order-first sm:order-none">Bag Despatch</h2>
+            <div className="flex-1 w-full sm:w-auto flex justify-end">
                 <UserInfo />
             </div>
         </div>
